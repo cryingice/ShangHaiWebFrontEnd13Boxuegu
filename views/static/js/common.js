@@ -14,7 +14,7 @@
 			// 点击退出
 			$("#unload").click(function(){
 				$.ajax({
-					url:"api/logout",
+					url:"/api/logout",
 					type:"post",
 					success:function(data){
 						console.log(data);
@@ -25,6 +25,18 @@
 				})
 			})
 
+			//实现导航栏的效果
+			$(".navs>.list-unstyled>li>ul").parent().click(function(){
+				$(this).children('.list-unstyled').slideToggle();
+			});
+			var activeA=$(".navs>.list-unstyled a[href='"+location.pathname+"']");
+			activeA.addClass("active");			
+			
+			// $(".navs>.list-unstyled>li>ul>li>a.active").parent().parent().show();
+			// 下面第二种方式
+			if (activeA.parent().parent().siblings("a").length>0) {
+				activeA.parent().parent().show();
+			}
 		}
 
 		
