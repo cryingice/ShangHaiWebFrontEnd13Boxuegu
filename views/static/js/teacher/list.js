@@ -36,4 +36,32 @@ define(["jquery","template","bootstrap"],function($,template){
 		})
 
 	})
+	//给启用/注销按钮绑定事件
+	// tc_status==1   按钮:启用  状态:已注销
+	// tc_status==0   按钮:注销  状态:已启用
+	$("#teacher-list").on("click",".status",function(){
+		var status=$(this).parent().data("status");
+		var id=$(this).parent().data("id");
+		var that=$(this);
+		//发送ajax请求进行启用与注销的切换
+		$.ajax({
+			url:"/api//teacher/handle",
+			data:{
+				tc_id:id,
+				tc_status:status
+			},
+			success:function(data){
+				console.log(data);
+				if (data.code==200) {
+					that.parent().data("status",data.result.tc_status);
+					console.log(that.parent().data("status"));
+					var temp=that.parent().data("status");
+					temp?that.removeClass("btn-warning").addClass("btn-success"):that.removeClass("btn-success").addClass("btn-warning");
+					temp?that.html("启 用"):that.html("注 销");
+				}
+				
+				
+			}
+		})
+	})
 })
