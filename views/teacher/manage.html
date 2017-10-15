@@ -34,22 +34,26 @@
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">姓名</label>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control input-sm" name="tc_name" placeholder="{{teacher.tc_name}}">
+                                <input type="text" class="form-control input-sm" name="tc_name" placeholder="{{teacher.tc_name}}"  data-required data-conditional="forbidden" data-description="username" data-describedby="msgforusername">
                             </div>
+                            <label class="col-xs-3 control-label"
+                            id="msgforusername" style="text-align: left;font-size: 7px;"></label>
                         </div>
                         {{if !teacher.tc_id}}
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">密码</label>
                             <div class="col-xs-4">
-                                <input type="password" class="form-control  input-sm" name="tc_pass">
+                                <input type="password" class="form-control  input-sm" name="tc_pass"  data-required data-trim data-description="password" data-describedby="msgforpassword" data-pattern="^[0-9A-Za-z_]{6,15}$">
                             </div>
+                            <label class="col-xs-3 control-label" id="msgforpassword" style="text-align: left;font-size: 7px;"></label>
                         </div>
                         {{/if}}
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">入职时间</label>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control input-sm" name="tc_join_date" value="{{teacher.tc_join_date}}">
+                                <input type="text" class="form-control input-sm" name="tc_join_date" value="{{teacher.tc_join_date}}"  data-required data-description="tc_join_date" data-describedby="msgfortc_join_date">
                             </div>
+                            <label class="col-xs-3 control-label" id="msgfortc_join_date" style="text-align: left;font-size: 7px;"></label>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">类型</label>
@@ -64,7 +68,7 @@
                             <label for="" class="col-xs-3 control-label">性别</label>
                             <div class="col-xs-4">
                                 <label class="radio-inline">
-                                    <input type="radio" name="tc_gender" value="0" {{teacher.tc_gender=="0"?"checked":''}}> 男
+                                    <input type="radio" name="tc_gender" value="0" {{teacher.tc_gender=="1"?"":'checked'}}> 男
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="tc_gender" value="1" {{teacher.tc_gender=="1"?"checked":''}}> 女
