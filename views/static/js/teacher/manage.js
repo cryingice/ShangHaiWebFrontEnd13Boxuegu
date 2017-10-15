@@ -55,9 +55,9 @@ define(["jquery","utils","template","form","datepicker","datepickerCN"],function
 		$(this).ajaxSubmit({
 		type:"post",
 		success:function(data){
-			console.log(data);
+			// console.log(data);
 			if (data.code==200) {
-				// location.href="/teacher/list";
+				location.href="/teacher/list";
 			}
 			
 		}

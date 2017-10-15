@@ -8,7 +8,7 @@
 		}
 			var userinfo=$.cookie("userinfo");
 			userinfo=JSON.parse(userinfo);
-			console.log(userinfo);
+			// console.log(userinfo);
 			$('#profile').html(template("profile-tplone",userinfo));
 
 			// 点击退出
