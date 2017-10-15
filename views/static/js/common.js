@@ -1,5 +1,22 @@
-	define(["jquery","template","cookie"],function($,template){
+	define(["jquery","template","nprogress","cookie"],function($,template,NProgress){
+		//刚进页面进度条开始加载
+		NProgress.start();
 		$(function(){
+			
+			//ajax 全局变量
+			$(document).ajaxSend(function(){
+				NProgress.start();
+				console.log(1);
+				$("#self_modal").show();
+			});
+			$(document).ajaxStop(function(){
+				NProgress.done();
+				$("#self_modal").hide();
+				console.log(2);
+			});
+
+			//静态页面加载完成进度条
+			NProgress.done();
 		//如果不是首页就可以添加以下模板代码
 		if(location.pathname!='/dashboard/login'){
 		//根据cookie信息判断是不是该返回登录页面
@@ -37,9 +54,12 @@
 			if (activeA.parent().parent().siblings("a").length>0) {
 				activeA.parent().parent().show();
 			}
+			
 		}
-
 		
-	})
-	})
+
+		})
+		
+
+})
 	

@@ -1,5 +1,6 @@
 define(["jquery","template","bootstrap"],function($,template){
-	//设置template过滤器
+	$(function(){
+		//设置template过滤器
 	template.defaults.imports.getage=function(value){
 		return new Date().getFullYear()-new Date(value).getFullYear();
 	}
@@ -64,4 +65,6 @@ define(["jquery","template","bootstrap"],function($,template){
 			}
 		})
 	})
+	})
+	
 })

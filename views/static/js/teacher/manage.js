@@ -1,5 +1,6 @@
 define(["jquery","utils","template","form","datepicker","datepickerCN"],function($,utils,template){
-	// //实现添加教师的功能
+	$(function(){
+		// //实现添加教师的功能
 	// $(".teacher-add .btn-addinfo").click(function(){
 	// 	$("#teacher-info").ajaxSubmit({
 	// 		url:"/api/teacher/add",
@@ -64,6 +65,8 @@ define(["jquery","utils","template","form","datepicker","datepickerCN"],function
 	})
 		return false;
 	})
+	})
+	
 	
 
 })
