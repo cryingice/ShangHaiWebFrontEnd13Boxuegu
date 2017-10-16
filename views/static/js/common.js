@@ -6,13 +6,13 @@
 			//ajax 全局变量
 			$(document).ajaxSend(function(){
 				NProgress.start();
-				console.log(1);
+				// console.log(1);
 				$("#self_modal").show();
 			});
 			$(document).ajaxStop(function(){
 				NProgress.done();
 				$("#self_modal").hide();
-				console.log(2);
+				// console.log(2);
 			});
 
 			//静态页面加载完成进度条
