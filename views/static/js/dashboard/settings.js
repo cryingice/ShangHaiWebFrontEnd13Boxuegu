@@ -64,6 +64,9 @@ define(["jquery","ckeditor","template","uploadify","region","datepicker","datepi
             $(".body>.settings").on("submit",'.form-horizontal',function(){
                     $(this).ajaxSubmit({
                     type:"post",
+                    data:{
+                        tc_hometown: $("#p>option:selected").text() + "|" + $("#c>option:selected").text() + "|" +$("#d>option:selected").text()
+                    },
                     success(data){
                         console.log(data);
                         if (data.code==200) {
