@@ -70,7 +70,7 @@ define(["jquery","ckeditor","template","uploadify","region","datepicker","datepi
                     success(data){
                         console.log(data);
                         if (data.code==200) {
-                           location.href="/course/course_add_step2"; 
+                           alert("信息提交成功!") 
                         }
                         
                     }

@@ -13,40 +13,8 @@
     <div class="main">
         <div class="container-fluid">
             <!-- 头部 -->
-            <div class="header">
-                <nav class="navbar navbar-custom">
-                    <div class="navbar-header">
-                        <a href="javascript:;" class="navbar-brand">
-                            <i class="fa fa-navicon"></i>
-                        </a>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-bell"></i>
-                                <span class="badge">8</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./settings.html">
-                                <i class="fa fa-user"></i>
-                                个人中心
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-sign-out"></i>
-                                退出
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-tasks"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>          
-            </div>
+             <!-- 头部 -->
+             <?php include "views/public/header.html"?>
             <div class="body course-add">
                 <!-- 面包屑 -->
                 <ol class="breadcrumb">
@@ -57,15 +25,15 @@
                     <div class="title">
                         <h5>创建课程 <small>CREATE A COURSE</small></h5>
                     </div>
-                    <form action="" class="form-horizontal col-xs-7">
+                    <form action="/api/course/create" class="form-horizontal col-xs-7">
                         <div class="form-group">
                             <label for="" class="col-xs-2 control-label">课程标题</label>
                             <div class="col-xs-9">
-                                <input type="text" class="form-control input-sm" placeholder="请填写课程标题">
+                                <input type="text" class="form-control input-sm" placeholder="请填写课程标题" name="cs_name" >
                             </div>
                         </div>
                         <div class="col-xs-11">
-                            <a href="./course_add_step1.html" class="btn btn-success btn-sm pull-right">创建课程</a>
+                            <button class="btn btn-success btn-sm pull-right btn_cs">创建课程</button>
                         </div>
                     </form>
                     <div class="extra col-xs-3">
@@ -78,6 +46,9 @@
     </div>
 
     <?php include "views/public/js.html"?>
+    <script>
+        require(['../static/js/course/course_add'])
+    </script>
 </body>
 </body>
 </html>
