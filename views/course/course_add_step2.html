@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
     <?php include "views/public/css.html"?>
+    <link rel="stylesheet" href="/views/assets/Jcrop/css/Jcrop.min.css">
 </head>
 <body>
     
@@ -36,6 +37,7 @@
                             <img src="{{cs_cover}}">
                             {{/if}}
                         </div>
+
                         <dl class="info">
                              <dt>{{cs_name}}</dt>
                             <dd>{{tc_name}}</dd>
@@ -78,6 +80,12 @@
                             <img src="/views/static/uploads/course.png" alt="">                        
                         {{/if}}
                             </div>
+                             <form>
+                            <input type="hidden" name="x">
+                            <input type="hidden" name="y">
+                            <input type="hidden" name="w">
+                            <input type="hidden" name="h">
+                        </form>
                             <p class="tips">
                                 可上传jpg, gif, png格式文件, 图片建议尺寸大于300x150，文件大小不能超过2M。
                             </p>
@@ -85,7 +93,7 @@
                                 <input type="file" class="btn btn-success btn-sm" id="upload-btn"></input>
                             </div>
                             <div class="col-xs-2">
-                                <button  class="btn btn-warning btn-sm" disabled id="crop-btn">裁切图片</button> 
+                                <button  class="btn btn-warning btn-sm" disabled data-type='crop' id="crop-btn">裁切图片</button> 
                             </div>
                         </div>
                     </div> 

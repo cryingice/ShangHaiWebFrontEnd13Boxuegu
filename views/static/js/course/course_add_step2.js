@@ -1,4 +1,4 @@
-define(["jquery", "template", "utils", "uploadify"], function($, template, utils){
+define(["jquery", "template", "utils", "uploadify","Jcrop","form"], function($, template, utils){
 	$(function(){
 		//一开始用url截取地址工具获取数据 ajax
 		var id=utils.getId("cs_id");
@@ -34,9 +34,52 @@ define(["jquery", "template", "utils", "uploadify"], function($, template, utils
 
                                 //将裁切按钮设置为启用状态
                                 $("#crop-btn").prop("disabled", false);
+
                             }
+                            // $("#upload-btn-button").css({"line-height":"1.5"});
                         }
                     });
+                    //jq更改上传图片按钮字样行高
+                    $("#upload-btn-button").css("line-height", 1.5);
+
+                    //截取图片 Jcrop插件 crop-btn点击事件
+                    $("#crop-btn").click(function(){
+                    	var status=$(this).data("type");
+                    	if (status=="crop") {
+                    		$(".preview>img").Jcrop({
+                    		 setSelect: [0, 0, 200, 200],
+                    		 aspectRatio: 2,
+                             boxWidth: 400	
+                    	}, function(){
+                                jcrop_api = this;
+                                var thumb = jcrop_api.initComponent('Thumbnailer', {width: 240, height: 120,container:".thumb"});
+                            });
+                            $(this).data("type","save");
+                            $(this).text("保存");
+                             $(".preview").on("cropstart cropmove cropend", function(e, s, c){
+		                        $("input[name='x']").val(c.x);
+		                        $("input[name='y']").val(c.y);
+		                        $("input[name='w']").val(c.w);
+		                        $("input[name='h']").val(c.h);
+                    		});
+                    	}else{
+                    		//当需要保存图片时
+                    		$("form").ajaxSubmit({
+                    			url: "/api/course/update/picture",
+                    			type:"post",
+                    			data:{
+                    				cs_id:id
+                    			},
+                    			success(msgone){
+                    				if (msgone.code==200) {
+                    					 location.href = "/course/course_add_step3?cs_id=" + msgone.result.cs_id;
+                    				}
+                    			}
+                    		})
+                    	}
+                    	
+                    })
+                    
 				}
 				
 			}
