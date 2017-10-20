@@ -14,8 +14,10 @@ define(['jquery','template','utils','ckeditor','bootstrap','form'],function($,te
                 }
             }
         });
+
        $(".steps").on("click",".add_btn,.editor_btn",function(){
        		// alert(1);
+       		console.log("点击加加1");
        		var data={};
        		var ct_id=$(this).data("ct_id");
        		console.log(ct_id);
@@ -27,8 +29,33 @@ define(['jquery','template','utils','ckeditor','bootstrap','form'],function($,te
 	        	$("#chapterModal").modal("show");
 	        	var html=template("course_add_step3_tplthree",data);
 	        	$(".modal-content").html(html);
-	        	$('.modal-content').on("submit","#lessons-form",function(){
+	        	
+       		}else{
+       			// 编辑课程
+       			data.title="编辑课时";
+	        	data.buttonText="保存";
+	        	data.url="/api/course/chapter/modify";
+	        	$("#chapterModal").modal("show");
+	        	$.ajax({
+	        		url: "/api/course/chapter/edit",
+                    data: {ct_id: ct_id},
+                    success(msg_one){
+                    	console.log(msg_one);
+                    	if (msg_one.code==200) {
+                    		$.extend(data, msg_one.result);
+                    	var html=template("course_add_step3_tplthree",data);
+	        			$(".modal-content").html(html);	
+                    	}
+                    }
+	        	});
+	        	
+       		}
+       		
+       })
+  //编辑/添加课时 注册提交点击事件 注意不能摆在上面点击事件内不然会重复注册事件
+		$('.modal-content').on("submit","#lessons-form",function(){
 	        		// alert(1);
+	        		console.log("点击加1");
 	        		$(this).ajaxSubmit({
 	        			data:{
 	        				ct_cs_id:id,
@@ -56,58 +83,6 @@ define(['jquery','template','utils','ckeditor','bootstrap','form'],function($,te
 	        		})
 	        		return false;
 	        	})
-       		}else{
-       			// 编辑课程
-       			data.title="编辑课时";
-	        	data.buttonText="保存";
-	        	data.url="/api/course/chapter/modify";
-	        	$("#chapterModal").modal("show");
-	        	$.ajax({
-	        		url: "/api/course/chapter/edit",
-                    data: {ct_id: ct_id},
-                    success(msg_one){
-                    	console.log(msg_one);
-                    	if (msg_one.code==200) {
-                    		$.extend(data, msg_one.result);
-                    	var html=template("course_add_step3_tplthree",data);
-	        			$(".modal-content").html(html);	
-                    	}
-                    }
-	        	});
-	        	$('.modal-content').on("submit","#lessons-form",function(){
-	        		$(this).ajaxSubmit({
-	        			data:{
-	        				ct_cs_id:id,
-	        				ct_is_free: $("#isfree").is(":checked")? "1": "0"
-	        			},
-	        			success(msg_one){
-	        				console.log(msg_one);
-	        				if (msg_one.code==200) {
-	        					$("#chapterModal").modal("hide");
-	        					$.ajax({
-	        						url: "/api/course/lesson",
-	        						data:{
-	        							cs_id: id
-	        						},
-	        						success(msg_two){
-	        							if(msg_two.code == 200){
-                    					var html = template("course_add_step3_tpltwo", msg_two.result);
-                    					$(".lessons>.list-unstyled").html(html);
-                }
-	        						}
-	        					})
-	        				}
-	        			}
-
-
-	        		});
-	        		return false;
-	        	})
-	        	
-       		}
-       })
-  
-		
 	})
 		
 })

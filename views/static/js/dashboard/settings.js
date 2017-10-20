@@ -70,7 +70,8 @@ define(["jquery","ckeditor","template","uploadify","region","datepicker","datepi
                     success(data){
                         console.log(data);
                         if (data.code==200) {
-                           alert("信息提交成功!") 
+                           alert("信息提交成功!");
+                           location.href="/dashboard/index" 
                         }
                         
                     }

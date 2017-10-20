@@ -10,6 +10,7 @@ define(["jquery","template"],function($,template){
 					$(".body>.courses").html(html);
 				}
 			}
-		})
+		});
+		
 	})	
 })

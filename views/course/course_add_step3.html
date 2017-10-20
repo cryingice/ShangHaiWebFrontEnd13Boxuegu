@@ -99,7 +99,7 @@
                 <!-- 操作 -->
                 <div class="action pull-right">
                     <button class="btn btn-info btn-xs editor_btn" data-toggle="modal" data-target="#lesson" data-ct_id="{{v.ct_id}}">编辑</button>
-                    <button class="btn btn-info btn-xs">预览</button>
+                    <button class="btn btn-info btn-xs preview_btn">预览</button>
                     <button class="btn btn-danger btn-xs">删除</button>
                 </div>
             </li>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link btn-sm" data-dismiss="modal">取消</button>
-                    <input type="submit" class="btn btn-success btn-sm " form="lessons-form">{{buttonText}}
+                    <input type="submit" class="btn btn-success btn-sm btn-p" form="lessons-form" value="{{buttonText}}">
                 </div>
     </script>
       <?php include "views/public/js.html"?>
